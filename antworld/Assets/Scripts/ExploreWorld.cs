@@ -8,47 +8,57 @@ public class ExploreWorld : MonoBehaviour
     private float waitTime;           
     public float startWaitTime;
     public Vector3 moveTarget;
+    private Vector3 foodPos;
+    private Inventory inventory;
 
     FOV ownFOV;
+    public Animator animator;
 
     void Start()
     {
         waitTime = startWaitTime;
-        moveTarget = CardinalDirections.chooseDirection();
+        moveTarget = Vector3.zero;
         ownFOV = GetComponent<FOV>();
+        inventory = GetComponent<Inventory>();
     }
 
     void FixedUpdate()
     {
-        if (ownFOV.isFoodSeeing())
+        if (inventory.isCarrying())
         {
-            moveTarget = ownFOV.getFoodPos();
-            transform.position = Vector3.MoveTowards(transform.position, moveTarget, speed * Time.deltaTime);
-            if (Vector2.Distance(transform.position, moveTarget) < 0.01f)
+            moveTarget = HomeReturn.home - transform.position;
+            transform.position = Vector3.MoveTowards(transform.position, HomeReturn.home, speed * Time.deltaTime);
+        }
+        else if (ownFOV.isFoodSeeing())
+        {
+            if (ownFOV.findingFood.Count == 0)
             {
-                ownFOV.findingFood.Remove(moveTarget);
-                if (ownFOV.findingFood.Count == 0)
+                ownFOV.notFoodSeeing();
+            }
+            else
+            {
+                waitTime = 0;
+                foodPos = ownFOV.getFoodPos();
+                moveTarget = foodPos - transform.position;
+                transform.position = Vector3.MoveTowards(transform.position, foodPos, speed * Time.deltaTime);
+                if (Vector3.Distance(transform.position, foodPos) < 0.1f)
                 {
-                    ownFOV.notFoodSeeing();
-                    waitTime = startWaitTime * Random.Range(1, 5);
-                }
-                else
-                {
-                    ownFOV.improveVision();
+                    ownFOV.findingFood.Remove(foodPos);
                 }
             }
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, moveTarget, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, transform.position + moveTarget, speed * Time.deltaTime);
             if (waitTime > 0)
             {
                 waitTime -= Time.deltaTime;
             }
             else
             {
-                float koef = Random.Range(1, 5);
-                moveTarget = CardinalDirections.chooseDirection() * koef;
+                float koef = Random.Range(1, 3);
+                moveTarget = CardinalDirections.chooseDirection();
+                checkStaying();
                 waitTime = startWaitTime * koef;
             }
         }
@@ -57,5 +67,17 @@ public class ExploreWorld : MonoBehaviour
     public Vector2 getMoveTarget()
     {
         return moveTarget;
+    }
+
+    private void checkStaying()
+    {
+        if (moveTarget != Vector3.zero)
+        {
+            animator.SetFloat("speed", 1);
+        }
+        else
+        {
+            animator.SetFloat("speed", 0);
+        }
     }
 }

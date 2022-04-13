@@ -5,9 +5,15 @@ using UnityEngine;
 public class FoodCollectable : MonoBehaviour
 {
     BoxCollider2D boxCollider;
+    Inventory inventory;
+    Animator animator;
+    FOV fov;
     private void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
+        inventory = GetComponent<Inventory>();
+        fov = GetComponent<FOV>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -15,9 +21,27 @@ public class FoodCollectable : MonoBehaviour
         {
             if (other.CompareTag("Collectable"))
             {
-                Collectable collectable = other.GetComponent<Collectable>();
-                collectable.Collect();
+                if (!GetComponent<Inventory>().isCarrying())
+                {
+                    Collectable collectable = other.GetComponent<Collectable>();
+                    collectable.Collect();
+                    pickFood(); // Подбор еды и переключение анимации
+                    if (fov.findingFood.Count > 0)
+                    {
+                        fov.findingFood.RemoveAt(0);
+                    }
+                    if (fov.findingFood.Count != 0)
+                    {
+                        fov.improveVision();
+                    }
+                }
             }
         }
+    }
+
+    private void pickFood()
+    {
+        inventory.setCarryingOn();
+        animator.SetBool("isCarrying", true);
     }
 }

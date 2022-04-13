@@ -1,13 +1,7 @@
 fileFormatVersion: 2
-guid: 8d4a94ae8803325489f19b00b5bea32b
+guid: 6769eadae27c11145b3337465a5689c1
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 5398269087075126572
-    second: AntScoutLeft
-  - first:
-      213: -6166067816268682084
-    second: AntScoutRight
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -109,43 +103,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AntScoutLeft
+      name: AntKeepStrawberryL1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 76
-        width: 35
-        height: 41
+        x: 15
+        y: 77
+        width: 28
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 3, y: 3, z: 4, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2dc51922218aea40800000000000000
-      internalID: 5398269087075126572
+      spriteID: 669cfb07dabc6c440800000000000000
+      internalID: 4955872385749207398
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AntScoutRight
+      name: AntKeepStrawberryL2
       rect:
         serializedVersion: 2
-        x: 82
-        y: 79
+        x: 17
+        y: 24
         width: 28
-        height: 40
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 2}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9c26568df9bd6aa0800000000000000
-      internalID: -6166067816268682084
+      spriteID: d84bda978b4abf0e0800000000000000
+      internalID: -2235011677836954483
       vertices: []
       indices: 
       edges: []

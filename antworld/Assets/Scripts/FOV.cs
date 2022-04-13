@@ -33,23 +33,6 @@ public class FOV : MonoBehaviour
         circleCollider.radius = radius;
     }
 
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        if (circleCollider.IsTouching(other))
-        {
-            if (other.CompareTag("Collectable"))
-            {
-                foodSeeing = true;
-                if (findingFood.IndexOf(other.transform.position) == -1)
-                {
-                    foodPos = other.transform.position;
-                    findingFood.Add(foodPos);
-                    improveVision();
-                }
-            }
-        }
-    }
-
     public void improveVision()
     {
         Vector2 current = transform.position;
@@ -73,6 +56,31 @@ public class FOV : MonoBehaviour
                     Vector2 tempV = findingFood[j + 1];
                     findingFood[j + 1] = findingFood[j];
                     findingFood[j] = tempV;
+                }
+            }
+        }
+    }
+    
+    public void checkAdd(Vector2 target)
+    {
+        if (findingFood.Count < 5)
+        {
+            findingFood.Add(target);
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (circleCollider.IsTouching(other))
+        {
+            if (other.CompareTag("Collectable"))
+            {
+                foodSeeing = true;
+                if (findingFood.IndexOf(other.transform.position) == -1)
+                {
+                    foodPos = other.transform.position;
+                    checkAdd(foodPos);
+                    improveVision();
                 }
             }
         }

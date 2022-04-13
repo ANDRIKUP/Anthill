@@ -23,7 +23,9 @@ public class CardinalDirections : MonoBehaviour
         NWW,
         NW,
         NNW,
-        waiting
+        waiting1,
+        waiting2,
+        waiting3
     }
 
     public static Vector2 chooseDirection()
@@ -81,7 +83,13 @@ public class CardinalDirections : MonoBehaviour
             case cardinalDir.NNW:
                 dir = 2 * Vector2.up + Vector2.left;
                 break;
-            case cardinalDir.waiting:
+            case cardinalDir.waiting1:
+                dir = Vector2.zero;
+                break;
+            case cardinalDir.waiting2:
+                dir = Vector2.zero;
+                break;
+            case cardinalDir.waiting3:
                 dir = Vector2.zero;
                 break;
             default:
