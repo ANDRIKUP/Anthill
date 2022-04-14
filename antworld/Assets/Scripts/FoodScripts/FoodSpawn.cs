@@ -6,13 +6,14 @@ public class FoodSpawn : MonoBehaviour
 {
     public float spawnTime;
     public List<GameObject> FoodList;
-    public float minCoord = -5;
-    public float maxCoord = 5;
+    public float maxCoord = 8;
+    public float internalBound = 3;
+    public Vector3 anthillPosition;
     void Start()
     {
+        anthillPosition = HomeReturn.home;
         StartCoroutine("timer");
     }
-
 
     IEnumerator timer()
     {
@@ -27,7 +28,33 @@ public class FoodSpawn : MonoBehaviour
     {
         GameObject food = FoodList[Random.Range(0, FoodList.Count)];
         Instantiate(food);
-        food.transform.position = new Vector2(Random.Range((float)minCoord, (float)maxCoord), Random.Range((float)minCoord, (float)maxCoord));
+        food.transform.position = accurating();
     }
 
+    Vector2 accurating()
+    {
+        float x, y;
+        float negX = Random.Range(0f, 1f);
+        float negY = Random.Range(0f, 1f);
+        float flag = Random.Range(0f, 1f);
+        if (flag < 0.33)
+        {
+            x = Random.Range(internalBound, maxCoord) + anthillPosition.x;
+            y = Random.Range(internalBound, maxCoord) + anthillPosition.y;
+        }
+        else if (flag < 0.66)
+        {
+            x = Random.Range(internalBound, maxCoord) + anthillPosition.x;
+            y = Random.Range(0f, maxCoord) + anthillPosition.y;
+        }
+        else
+        {
+            x = Random.Range(0f, maxCoord) + anthillPosition.x;
+            y = Random.Range(internalBound, maxCoord) + anthillPosition.y;
+        }
+        if (negX > 0.5) x *= -1;
+        if (negY > 0.5) y *= -1;
+        Vector2 resultPos = new Vector2(x, y);
+        return resultPos;
+    }
 }
