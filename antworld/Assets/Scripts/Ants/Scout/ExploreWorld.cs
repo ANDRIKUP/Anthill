@@ -11,14 +11,14 @@ public class ExploreWorld : MonoBehaviour
     private Vector3 foodPos;
     private Inventory inventory;
 
-    FOV ownFOV;
+    FOVScout ownFOV;
     public Animator animator;
 
     void Start()
     {
         waitTime = startWaitTime;
         moveTarget = Vector3.zero;
-        ownFOV = GetComponent<FOV>();
+        ownFOV = GetComponent<FOVScout>();
         inventory = GetComponent<Inventory>();
     }
 

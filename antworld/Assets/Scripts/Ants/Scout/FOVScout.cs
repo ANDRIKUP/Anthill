@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FOV : MonoBehaviour 
+public class FOVScout : MonoBehaviour 
 {
     public float radius = 1f;
     public float angle = 90f;
@@ -13,6 +13,9 @@ public class FOV : MonoBehaviour
     Vector2 foodPos;
 
     public List<Vector2> findingFood = new List<Vector2>();
+
+    Inventory inventory;
+    Animator animator;
 
     public bool isFoodSeeing()
     {
@@ -31,6 +34,9 @@ public class FOV : MonoBehaviour
     {
         circleCollider = GetComponent<CircleCollider2D>();
         circleCollider.radius = radius;
+
+        inventory = GetComponent<Inventory>();
+        animator = GetComponent<Animator>();
     }
 
     public void improveVision()
@@ -73,7 +79,18 @@ public class FOV : MonoBehaviour
     {
         if (circleCollider.IsTouching(other))
         {
-            if (other.CompareTag("Collectable"))
+            if (other.CompareTag("Threat"))
+            {
+                if (inventory.isCarrying())
+                {
+                    inventory.setCarryingOff();
+                    GameObject food = GameObject.FindGameObjectWithTag("Collectable");
+                    Instantiate(food);
+                    food.transform.position = transform.position;
+                    animator.SetBool("isCarrying", false);
+                }
+            }
+            else if (other.CompareTag("Collectable"))
             {
                 foodSeeing = true;
                 if (findingFood.IndexOf(other.transform.position) == -1)

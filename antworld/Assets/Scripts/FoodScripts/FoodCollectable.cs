@@ -7,13 +7,13 @@ public class FoodCollectable : MonoBehaviour
     BoxCollider2D boxCollider;
     Inventory inventory;
     Animator animator;
-    FOV fov;
+    FOVScout fov;
     private void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         inventory = GetComponent<Inventory>();
-        fov = GetComponent<FOV>();
+        fov = GetComponent<FOVScout>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
