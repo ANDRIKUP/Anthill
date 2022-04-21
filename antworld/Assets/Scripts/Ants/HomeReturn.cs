@@ -6,7 +6,7 @@ public class HomeReturn : MonoBehaviour
 {
     public static Vector3 home = new Vector3(0, 0, 0);
     Animator animator;
-    public BoxCollider2D boxCollider;
+    BoxCollider2D boxCollider;
 
     void Start()
     {
@@ -23,7 +23,7 @@ public class HomeReturn : MonoBehaviour
                 if (GetComponent<Inventory>().isCarrying())
                 {
                     GetComponent<Inventory>().setCarryingOff();
-
+                    foodStorage.addFood();
                     animator.SetBool("isCarrying", false);
                 }
             }

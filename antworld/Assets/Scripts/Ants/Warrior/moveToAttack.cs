@@ -62,7 +62,7 @@ public class moveToAttack : MonoBehaviour
                         threat = fov.getThreat();
                     }
                 }
-                else if (Vector3.Distance(transform.position, threat.transform.position) > 1.5f)
+                else if (Vector3.Distance(transform.position, threat.transform.position) > 1f)
                 {
                     reached = false;
                 }

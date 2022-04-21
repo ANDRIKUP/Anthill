@@ -13,6 +13,8 @@ public class Attack : MonoBehaviour
     public float attackRange;
     public Animator animator;
     public moveToAttack mvAtt;
+    BoxCollider2D boxCollider;
+    CircleCollider2D circleCollider;
 
     void Start()
     {
@@ -20,6 +22,8 @@ public class Attack : MonoBehaviour
         damage = GetComponent<Damage>().getDamage();
         mvAtt = GetComponent<moveToAttack>();
         animator = GetComponent<Animator>();
+        boxCollider = GetComponent<BoxCollider2D>();
+        circleCollider = GetComponent<CircleCollider2D>();
     }
 
     public void FixedUpdate()
@@ -57,6 +61,12 @@ public class Attack : MonoBehaviour
         for (int i = 0; i < enemies.Length; i++)
         {
             enemies[i].GetComponent<Health>().setDamage(damage);
+        }
+        //Все, кто в поле зрения - агрятся
+        Collider2D[] trigeredEnemies = Physics2D.OverlapCircleAll(transform.position, circleCollider.radius, enemy);
+        for (int i = 0; i < trigeredEnemies.Length; i++)
+        {
+            trigeredEnemies[i].GetComponent<checkAttacked>().attackedByIt(boxCollider);
         }
         timeBtwAttack = startTimeBtwAttack;
         animator.SetBool("rest", true);

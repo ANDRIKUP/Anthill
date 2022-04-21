@@ -8,12 +8,14 @@ public class WarriorSprite : MonoBehaviour
     DeffendPlace dfPl;
     FOVWarrior fov;
     Animator animator;
+    Attack att;
     void Start()
     {
         mvAtt = GetComponent<moveToAttack>();
         dfPl = GetComponent<DeffendPlace>();
         fov = GetComponent<FOVWarrior>();
         animator = GetComponent<Animator>();
+        att = GetComponent<Attack>();
     }
 
     // Update is called once per frame
@@ -25,10 +27,18 @@ public class WarriorSprite : MonoBehaviour
             {
                 if (mvAtt.getThreat().transform.position.x > transform.position.x)
                 {
+                    if (GetComponent<SpriteRenderer>().flipX == false)
+                    {
+                        att.attackPos.position += new Vector3(.5f, 0, 0);
+                    }
                     GetComponent<SpriteRenderer>().flipX = true;
                 }
                 else if (mvAtt.getThreat().transform.position.x < transform.position.x)
                 {
+                    if (GetComponent<SpriteRenderer>().flipX == true)
+                    {
+                        att.attackPos.position -= new Vector3(.5f, 0, 0);
+                    }
                     GetComponent<SpriteRenderer>().flipX = false;
                 }
             }
@@ -37,10 +47,18 @@ public class WarriorSprite : MonoBehaviour
         {
             if (dfPl.deffendPos.x > transform.position.x)
             {
+                if (GetComponent<SpriteRenderer>().flipX == false)
+                {
+                    att.attackPos.position += new Vector3(.5f, 0, 0);
+                }
                 GetComponent<SpriteRenderer>().flipX = true;
             }
             else if (dfPl.deffendPos.x < transform.position.x) 
             {
+                if (GetComponent<SpriteRenderer>().flipX == true)
+                {
+                    att.attackPos.position -= new Vector3(.5f, 0, 0);
+                }
                 GetComponent<SpriteRenderer>().flipX = false;
             }
         }
