@@ -23,6 +23,31 @@ public class FOVWarrior : MonoBehaviour
     {
         threats.RemoveAt(0);
     }
+    public void setThreat(Collider2D threat)
+    {
+        threatSeeing = true;
+        threats.Add(threat);
+        checkNearest();
+    }
+    
+    private void checkNearest()
+    {
+        if (threats.Count == 0)
+        {
+            return;
+        }
+        // расстояние между муравьём и первой известной угрозой
+        float diffFirst = Mathf.Sqrt(Mathf.Pow(threats[0].transform.position.x - transform.position.x, 2) + Mathf.Pow(threats[0].transform.position.y - transform.position.y, 2));
+        // расстояние между муравьём и новой найденной угрозой
+        float diffLast = Mathf.Sqrt(Mathf.Pow(threats[threats.Count - 1].transform.position.x - transform.position.x, 2) + Mathf.Pow(threats[threats.Count - 1].transform.position.y - transform.position.y, 2));
+        if (diffFirst > diffLast)
+        {
+            Collider2D temp = threats[0];
+            threats[0] = threats[threats.Count - 1];
+            threats[threats.Count - 1] = temp;
+        }
+    }
+
     public Collider2D getThreat()
     {
         if (threats.Count > 0)
@@ -48,6 +73,7 @@ public class FOVWarrior : MonoBehaviour
                 if (!threats.Contains(other))
                 {
                     threats.Add(other);
+                    checkNearest();
                 }
             }
         }

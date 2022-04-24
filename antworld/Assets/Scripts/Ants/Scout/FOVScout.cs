@@ -14,6 +14,7 @@ public class FOVScout : MonoBehaviour
 
     public List<Vector2> findingFood = new List<Vector2>();
 
+    NotifyAboutThreat notific;
     Inventory inventory;
     Animator animator;
 
@@ -32,6 +33,7 @@ public class FOVScout : MonoBehaviour
 
     private void Start()
     {
+        notific = GetComponent<NotifyAboutThreat>();
         circleCollider = GetComponent<CircleCollider2D>();
         circleCollider.radius = radius;
 
@@ -89,8 +91,9 @@ public class FOVScout : MonoBehaviour
                     food.transform.position = transform.position;
                     animator.SetBool("isCarrying", false);
                 }
+                notific.setThreatSeeing(other);
             }
-            else if (other.CompareTag("Collectable"))
+            else if (!notific.isThreatSeeing() && other.CompareTag("Collectable"))
             {
                 foodSeeing = true;
                 if (findingFood.IndexOf(other.transform.position) == -1)

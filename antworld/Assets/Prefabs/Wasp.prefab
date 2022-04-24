@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 8221506642912271665}
   - component: {fileID: 7860038945402485044}
   - component: {fileID: 6975092385807375865}
+  - component: {fileID: 6218096970774282330}
   m_Layer: 6
   m_Name: Wasp
   m_TagString: Threat
@@ -220,7 +221,7 @@ MonoBehaviour:
   enemyAnts:
     serializedVersion: 2
     m_Bits: 128
-  attackRange: 0.28
+  attackRange: 0.4
 --- !u!114 &6975092385807375865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +234,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5e7ebcd7ae1e14d883529d406aeb07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6218096970774282330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5654710676486559239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aeeed3c51848f143a0c2bfa908bdd77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
 --- !u!1 &8191629754704340350
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +271,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8191629754704340350}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.244, y: -0.26, z: 0}
+  m_LocalPosition: {x: -0.291, y: -0.075, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5654710676486559258}

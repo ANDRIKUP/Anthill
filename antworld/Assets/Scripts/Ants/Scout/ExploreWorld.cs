@@ -10,6 +10,7 @@ public class ExploreWorld : MonoBehaviour
     public Vector3 moveTarget;
     private Vector3 foodPos;
     private Inventory inventory;
+    private NotifyAboutThreat notific;
 
     FOVScout ownFOV;
     public Animator animator;
@@ -20,46 +21,50 @@ public class ExploreWorld : MonoBehaviour
         moveTarget = Vector3.zero;
         ownFOV = GetComponent<FOVScout>();
         inventory = GetComponent<Inventory>();
+        notific = GetComponent<NotifyAboutThreat>();
     }
 
     void FixedUpdate()
     {
-        if (inventory.isCarrying())
+        if (!notific.isThreatSeeing())
         {
-            moveTarget = HomeReturn.home - transform.position;
-            transform.position = Vector3.MoveTowards(transform.position, HomeReturn.home, speed * Time.deltaTime);
-        }
-        else if (ownFOV.isFoodSeeing())
-        {
-            if (ownFOV.findingFood.Count == 0)
+            if (inventory.isCarrying())
             {
-                ownFOV.notFoodSeeing();
+                moveTarget = HomeReturn.home - transform.position;
+                transform.position = Vector3.MoveTowards(transform.position, HomeReturn.home, speed * Time.deltaTime);
             }
-            else
+            else if (ownFOV.isFoodSeeing())
             {
-                waitTime = 0;
-                foodPos = ownFOV.getFoodPos();
-                moveTarget = foodPos - transform.position;
-                transform.position = Vector3.MoveTowards(transform.position, foodPos, speed * Time.deltaTime);
-                if (Vector3.Distance(transform.position, foodPos) < 0.1f)
+                if (ownFOV.findingFood.Count == 0)
                 {
-                    ownFOV.findingFood.Remove(foodPos);
+                    ownFOV.notFoodSeeing();
+                }
+                else
+                {
+                    waitTime = 0;
+                    foodPos = ownFOV.getFoodPos();
+                    moveTarget = foodPos - transform.position;
+                    transform.position = Vector3.MoveTowards(transform.position, foodPos, speed * Time.deltaTime);
+                    if (Vector3.Distance(transform.position, foodPos) < 0.1f)
+                    {
+                        ownFOV.findingFood.Remove(foodPos);
+                    }
                 }
             }
-        }
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, transform.position + moveTarget, speed * Time.deltaTime);
-            if (waitTime > 0)
-            {
-                waitTime -= Time.deltaTime;
-            }
             else
             {
-                float koef = Random.Range(1, 3);
-                moveTarget = CardinalDirections.chooseDirection();
-                checkStaying();
-                waitTime = startWaitTime * koef;
+                transform.position = Vector3.MoveTowards(transform.position, transform.position + moveTarget, speed * Time.deltaTime);
+                if (waitTime > 0)
+                {
+                    waitTime -= Time.deltaTime;
+                }
+                else
+                {
+                    float koef = Random.Range(1, 3);
+                    moveTarget = CardinalDirections.chooseDirection();
+                    checkStaying(); //для анимации
+                    waitTime = startWaitTime * koef;
+                }
             }
         }
     }
