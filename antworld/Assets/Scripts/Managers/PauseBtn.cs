@@ -12,6 +12,10 @@ public class PauseBtn : MonoBehaviour
     private GameObject pausePanel;
     [SerializeField]
     private GameObject gamePanel;
+    [SerializeField]
+    private GameObject trigerShopPanel;
+    [SerializeField]
+    private GameObject shopPanel;
 
     [SerializeField]
     private Text countAntGame, countAntPause, countFoodGame, countFoodPause;
@@ -24,12 +28,15 @@ public class PauseBtn : MonoBehaviour
         countAntPause.text = countAntGame.text;
         countFoodPause.text = countFoodGame.text;
         cam.GetComponent<cameraMovement>().enabled = false;
+        trigerShopPanel.SetActive(false);
+        if (shopPanel.activeSelf) shopPanel.SetActive(false);
     }
 
     public void backToMenu()
     {
         Time.timeScale = 1;
         cam.GetComponent<cameraMovement>().enabled = true;
+        trigerShopPanel.SetActive(true);
         SceneManager.LoadScene(0);
     }
 
@@ -39,5 +46,6 @@ public class PauseBtn : MonoBehaviour
         pausePanel.SetActive(false);
         gamePanel.SetActive(true);
         cam.GetComponent<cameraMovement>().enabled = true;
+        trigerShopPanel.SetActive(true);
     }
 }

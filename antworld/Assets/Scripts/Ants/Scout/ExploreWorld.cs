@@ -60,7 +60,7 @@ public class ExploreWorld : MonoBehaviour
                 }
                 else
                 {
-                    float koef = Random.Range(1, 3);
+                    float koef = Random.Range(1, 4);
                     moveTarget = CardinalDirections.chooseDirection();
                     checkStaying(); //для анимации
                     waitTime = startWaitTime * koef;

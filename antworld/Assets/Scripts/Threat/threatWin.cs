@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class threatWin : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject manager;
-    private gameOver ovr;
+    public GameObject manager;
+
+    void Awake()
+    {
+        manager = GameObject.Find("manager");
+    }
 
     void Start()
     {
-        ovr = manager.GetComponent<gameOver>();
+
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Anthill"))
         {
-            ovr.over();
+            manager.GetComponent<gameOver>().over();
         }
     }
 }

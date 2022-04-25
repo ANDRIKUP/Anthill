@@ -25,7 +25,8 @@ public class CardinalDirections : MonoBehaviour
         NNW,
         waiting1,
         waiting2,
-        waiting3
+        waiting3,
+        home
     }
 
     public static Vector2 chooseDirection()
@@ -91,6 +92,9 @@ public class CardinalDirections : MonoBehaviour
                 break;
             case cardinalDir.waiting3:
                 dir = Vector2.zero;
+                break;
+            case cardinalDir.home:
+                dir = HomeReturn.home;
                 break;
             default:
                 Debug.Log("Incorrect direction!!!");

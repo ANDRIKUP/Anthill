@@ -8,14 +8,14 @@ public class WarriorSprite : MonoBehaviour
     DeffendPlace dfPl;
     FOVWarrior fov;
     Animator animator;
-    Attack att;
+    AttackWarrior att;
     void Start()
     {
         mvAtt = GetComponent<moveToAttack>();
         dfPl = GetComponent<DeffendPlace>();
         fov = GetComponent<FOVWarrior>();
         animator = GetComponent<Animator>();
-        att = GetComponent<Attack>();
+        att = GetComponent<AttackWarrior>();
     }
 
     // Update is called once per frame

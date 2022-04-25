@@ -7,13 +7,13 @@ public class moveToAttack : MonoBehaviour
     public float speed = .75f;
     FOVWarrior fov;
     bool reached = false;
-    Attack att;
+    AttackWarrior att;
     Collider2D threat;
     Animator animator;
     void Start()
     {
         fov = GetComponent<FOVWarrior>();
-        att = GetComponent<Attack>();
+        att = GetComponent<AttackWarrior>();
         animator = GetComponent<Animator>();
     }
     public bool isReached()

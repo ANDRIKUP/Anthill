@@ -7,6 +7,7 @@ public class mainMenu : MonoBehaviour
 {
     public void changeScene(int numberOfScene)
     {
+        Timer.settimePassed();
         SceneManager.LoadScene(numberOfScene);
     }
 

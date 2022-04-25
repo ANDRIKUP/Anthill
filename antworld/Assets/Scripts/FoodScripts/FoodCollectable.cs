@@ -4,35 +4,40 @@ using UnityEngine;
 
 public class FoodCollectable : MonoBehaviour
 {
-    BoxCollider2D boxCollider;
+    CapsuleCollider2D capsuleCollider;
     Inventory inventory;
     Animator animator;
     FOVScout fov;
+    NotifyAboutThreat notific;
     private void Start()
     {
-        boxCollider = GetComponent<BoxCollider2D>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
         inventory = GetComponent<Inventory>();
         fov = GetComponent<FOVScout>();
+        notific = GetComponent<NotifyAboutThreat>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (boxCollider.IsTouching(other))
+        if (capsuleCollider.IsTouching(other))
         {
             if (other.CompareTag("Collectable"))
             {
-                if (!GetComponent<Inventory>().isCarrying())
+                if (!notific.isThreatSeeing())
                 {
-                    Collectable collectable = other.GetComponent<Collectable>();
-                    collectable.Collect();
-                    pickFood(); // Подбор еды и переключение анимации
-                    if (fov.findingFood.Count > 0)
+                    if (!GetComponent<Inventory>().isCarrying())
                     {
-                        fov.findingFood.RemoveAt(0);
-                    }
-                    if (fov.findingFood.Count != 0)
-                    {
-                        fov.improveVision();
+                        Collectable collectable = other.GetComponent<Collectable>();
+                        collectable.Collect();
+                        pickFood(); // Подбор еды и переключение анимации
+                        if (fov.findingFood.Count > 0)
+                        {
+                            fov.findingFood.RemoveAt(0);
+                        }
+                        if (fov.findingFood.Count != 0)
+                        {
+                            fov.improveVision();
+                        }
                     }
                 }
             }

@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 5139607936286736077}
   - component: {fileID: 6941037706141511885}
   - component: {fileID: -5236990560891568193}
+  - component: {fileID: 2125736931}
+  - component: {fileID: 2125736932}
+  - component: {fileID: 2125736937}
   m_Layer: 0
   m_Name: Anthill
   m_TagString: Anthill
@@ -96,16 +99,55 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.029886454, y: 0.026077293}
+  m_Offset: {x: 0.057375118, y: -0.09667739}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.28}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5029531, y: 0.2565369}
+  m_Size: {x: 0.875577, y: 0.5020463}
   m_EdgeRadius: 0
+--- !u!114 &2125736931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4709028469483957726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b557930bbf3f430439d9f037600e5a8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtCountAnt: {fileID: 0}
+--- !u!114 &2125736932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4709028469483957726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21b5559d79ce3f2478cc9c6e40a6758e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startCount: 20
+  txtFoodCount: {fileID: 0}
+--- !u!114 &2125736937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4709028469483957726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad86d9ae557fe16448bbbd3767d36777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

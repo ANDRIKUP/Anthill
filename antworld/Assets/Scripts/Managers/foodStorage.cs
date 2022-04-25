@@ -5,13 +5,25 @@ using UnityEngine.UI;
 
 public class foodStorage : MonoBehaviour
 {
-    public static int foodCount = 0;
+    private static int foodCount;
+    [SerializeField] private int startCount;
     [SerializeField]
     private Text txtFoodCount;
-
+    void Start()
+    {
+        foodCount = startCount;
+    }
     public static void addFood()
     {
         foodCount++;
+    }
+
+    public static void buyUpgr(int cost)
+    {
+        if (foodCount >= cost)
+        {
+            foodCount -= cost;
+        }
     }
 
     public static int getFoodCount()

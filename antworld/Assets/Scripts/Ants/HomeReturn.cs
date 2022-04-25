@@ -6,17 +6,17 @@ public class HomeReturn : MonoBehaviour
 {
     public static Vector3 home = new Vector3(0, 0, 0);
     Animator animator;
-    BoxCollider2D boxCollider;
+    CapsuleCollider2D capsuleCollider;
 
     void Start()
     {
-        boxCollider = GetComponent<BoxCollider2D>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
     }
 
     void OnTriggerEnter2D(Collider2D home)
     {
-        if (boxCollider.IsTouching(home))
+        if (capsuleCollider.IsTouching(home))
         {
             if (home.CompareTag("Anthill"))
             {

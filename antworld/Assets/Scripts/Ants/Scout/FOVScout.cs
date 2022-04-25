@@ -88,7 +88,7 @@ public class FOVScout : MonoBehaviour
                     inventory.setCarryingOff();
                     GameObject food = GameObject.FindGameObjectWithTag("Collectable");
                     Instantiate(food);
-                    food.transform.position = transform.position;
+                    food.transform.position = new Vector3(transform.position.x - 0.3f, transform.position.y + 0.3f, 0);
                     animator.SetBool("isCarrying", false);
                 }
                 notific.setThreatSeeing(other);

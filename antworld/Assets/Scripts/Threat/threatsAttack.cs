@@ -41,7 +41,7 @@ public class threatsAttack : MonoBehaviour
         Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPos.position, attackRange, enemyAnts);
         for (int i = 0; i < enemies.Length; i++)
         {
-            if (enemies[i].GetType() == typeof(BoxCollider2D))
+            if (enemies[i].GetType() == typeof(CapsuleCollider2D))
             {
                 enemies[i].GetComponent<Health>().setDamage(damage);
             }

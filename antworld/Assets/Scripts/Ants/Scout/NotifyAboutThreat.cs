@@ -101,6 +101,7 @@ public class NotifyAboutThreat : MonoBehaviour
             }
             else
             {
+                expW.moveTarget = HomeReturn.home - transform.position;
                 if (Vector3.Distance(transform.position, HomeReturn.home) > 1f)
                 {
                     transform.position = Vector3.MoveTowards(transform.position, HomeReturn.home, expW.speed * koefSpeed * Time.deltaTime);
@@ -117,9 +118,11 @@ public class NotifyAboutThreat : MonoBehaviour
     {
         if (warrior.CompareTag("AntWarrior") && threatSeeing && threat != null)
         {
-            Debug.Log("Im here");
-            notThreatSeeing();
-            warrior.GetComponentInParent<FOVWarrior>().setThreat(threat);
+            if (!warrior.GetComponentInParent<FOVWarrior>().isThreatSeeing())
+            {
+                notThreatSeeing();
+                warrior.GetComponentInParent<FOVWarrior>().setThreat(threat);
+            }
         }
     }
 }
