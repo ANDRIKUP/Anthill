@@ -28,6 +28,7 @@ public class ExploreWorld : MonoBehaviour
     {
         if (!notific.isThreatSeeing())
         {
+            Vector2 foodSpawnMax = FoodSpawn.getStatMaxCoord();
             if (inventory.isCarrying())
             {
                 moveTarget = HomeReturn.home - transform.position;
@@ -54,16 +55,16 @@ public class ExploreWorld : MonoBehaviour
             else
             {
                 transform.position = Vector3.MoveTowards(transform.position, transform.position + moveTarget, speed * Time.deltaTime);
-                if (waitTime > 0)
-                {
-                    waitTime -= Time.deltaTime;
-                }
-                else
+                if (waitTime <= 0 || Mathf.Abs(transform.position.x) > foodSpawnMax.x || Mathf.Abs(transform.position.y) > foodSpawnMax.y)
                 {
                     float koef = Random.Range(1, 4);
                     moveTarget = CardinalDirections.chooseDirection();
                     checkStaying(); //для анимации
                     waitTime = startWaitTime * koef;
+                }
+                else
+                {
+                    waitTime -= Time.deltaTime;
                 }
             }
         }

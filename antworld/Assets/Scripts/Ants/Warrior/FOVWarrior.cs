@@ -65,6 +65,7 @@ public class FOVWarrior : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
+        circleCollider = GetComponent<CircleCollider2D>();
         if (circleCollider.IsTouching(other))
         {
             if (other.CompareTag("Threat"))

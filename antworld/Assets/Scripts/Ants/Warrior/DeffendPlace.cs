@@ -28,4 +28,9 @@ public class DeffendPlace : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, deffendPos, mvAtt.speed * Time.deltaTime);
         }
     }
+
+    public void setDeffendPos(Vector3 target)
+    {
+        deffendPos = target;
+    }
 }

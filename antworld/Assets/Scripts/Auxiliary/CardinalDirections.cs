@@ -25,7 +25,6 @@ public class CardinalDirections : MonoBehaviour
         NNW,
         waiting1,
         waiting2,
-        waiting3,
         home
     }
 
@@ -88,9 +87,6 @@ public class CardinalDirections : MonoBehaviour
                 dir = Vector2.zero;
                 break;
             case cardinalDir.waiting2:
-                dir = Vector2.zero;
-                break;
-            case cardinalDir.waiting3:
                 dir = Vector2.zero;
                 break;
             case cardinalDir.home:

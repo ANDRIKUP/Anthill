@@ -12,7 +12,7 @@ public class anthillCapacity : MonoBehaviour
         currentLvl = 1;
         for (int i = 0; i < lvl.Length; i++)
         {
-            lvl[i] = 5 * i + 10;
+            lvl[i] = 5 * i + 15;
         }
         antCapacity = lvl[0];
     }

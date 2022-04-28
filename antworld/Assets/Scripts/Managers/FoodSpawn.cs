@@ -9,6 +9,7 @@ public class FoodSpawn : MonoBehaviour
     public List<GameObject> FoodList;
     private float mapMaxX, mapMaxY;
     [SerializeField] private float curMaxX, curMaxY;
+    private static float statCurMaxX, statCurMaxY;
     [SerializeField] private float internalBound;
     public Vector3 anthillPosition;
 
@@ -23,7 +24,14 @@ public class FoodSpawn : MonoBehaviour
     void Start()
     {
         anthillPosition = HomeReturn.home;
+        statCurMaxX = curMaxX;
+        statCurMaxY = curMaxY;
         StartCoroutine("timer");
+    }
+
+    public static Vector2 getStatMaxCoord()
+    {
+        return new Vector2(statCurMaxX, statCurMaxY);
     }
 
     IEnumerator timer()
@@ -34,15 +42,17 @@ public class FoodSpawn : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(spawnTime);
-            if (k <= 600)
+            if (k <= 200)
             {
                 k++;
-                if (k % 60 == 0)
+                if (k % 20 == 0)
                 {
                     if (curMaxX < mapMaxX && curMaxY < mapMaxY)
                     {
                         curMaxX += stepX;
                         curMaxY += stepY;
+                        statCurMaxX = curMaxX;
+                        statCurMaxY = curMaxY;
                     }
                 }
             }
