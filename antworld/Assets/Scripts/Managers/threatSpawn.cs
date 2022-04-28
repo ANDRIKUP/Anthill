@@ -9,7 +9,7 @@ public class threatSpawn : MonoBehaviour
     [SerializeField] private float timeBtwWavesDifc = 120f;
     private float curTimeBtwWavesDifc;
     //время между спавнами волн
-    [SerializeField] private float timeBtwWaveSpawns = 30f;
+    [SerializeField] private float timeBtwWaveSpawns = 45f;
     private float curTimeBtwWaveSpawns;
     //время между спавнами угроз в волне
     [SerializeField] private float spawningTime = 3f;
